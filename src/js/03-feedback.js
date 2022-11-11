@@ -2,11 +2,11 @@ import throttle from 'lodash.throttle';
 
 // ================================================
 
-const form = document.querySelector('.feedback-form');
-
-const emailInput = document.querySelector('.feedback-form input');
-
-const messageInput = document.querySelector('.feedback-form textarea');
+const refs = {
+  form: document.querySelector('.feedback-form'),
+  emailInput: document.querySelector('.feedback-form input'),
+  messageInput: document.querySelector('.feedback-form textarea'),
+};
 
 // ==================================================
 
@@ -34,11 +34,11 @@ function resetFormContent() {
   const savingMessageParced = JSON.parse(savingMessage);
 
   if (savingMessage) {
-    messageInput.value = savingMessageParced.message;
-    emailInput.value = savingMessageParced.email;
+    refs.messageInput.value = savingMessageParced.message;
+    refs.emailInput.value = savingMessageParced.email;
   }
 }
 
-form.addEventListener('submit', onFormSubmit);
+refs.form.addEventListener('submit', onFormSubmit);
 
-form.addEventListener('input', throttle(updatingForm, 500));
+refs.form.addEventListener('input', throttle(updatingForm, 500));
